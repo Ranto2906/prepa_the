@@ -42,6 +42,9 @@ $router->post('/varietes/update', [$Variete_Controller, 'updateVariete']);
 //parcelle 
 $Parcelle_Controller = new ParcelleController();
 $router->get('/parcelles', [$Parcelle_Controller, 'getAllParcelles']);
+$router->get('/parcelles/addForm', function () {
+    Flight::render('client/pages/parcelles-form');
+});
 $router->post('/parcelles/add', [$Parcelle_Controller, 'addParcelle']);
 $router->post('/parcelles/delete', [$Parcelle_Controller, 'deleteParcelle']);
 $router->post('/parcelles/update', [$Parcelle_Controller, 'updateParcelle']);
@@ -72,7 +75,7 @@ $router->post('/categorieDepense/update', [$Categorie_Depense_Controller, 'updat
 $Configuration_Controller = new ConfigurationController();
 $router->get('/configuration', [$Configuration_Controller, 'showConfiguration']);
 $router->get('/configuration/addForm', function () {
-    Flight::render('client/pages/categories-form');
+    Flight::render('client/pages/configuration-form');
 });
 $router->post('/configuration/add', [$Configuration_Controller, 'saveConfiguration']);
 
