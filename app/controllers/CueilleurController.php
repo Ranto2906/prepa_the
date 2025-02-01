@@ -6,24 +6,22 @@ use Flight;
 
 class CueilleurController
 {
-    public function __construct()
-    {
-    }
+    public function __construct() {}
 
-    public function updatePage() 
+    public function updatePage()
     {
         if (!isset($_GET['id'])) {
-            Flight::redirect('/cueilleurs'); 
+            Flight::redirect('/cueilleurs');
             return;
         }
-    
+
         $toUpdate = Flight::CueilleurModel()->getCueilleurById($_GET['id']);
-    
+
         if (!$toUpdate) {
             Flight::redirect('/cueilleurs');
             return;
         }
-    
+
         Flight::render('admin/pages/cueilleurs-form', ['cueilleur' => $toUpdate]);
     }
 

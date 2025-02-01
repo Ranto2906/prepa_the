@@ -49,7 +49,7 @@ class AdminController
         // $listeHabitations = Flight::HabitationModel()->getAllHabitations();
         // Flight::render('admin/pages/index', ['liste' => $listeHabitations]);
 
-            Flight::render('admin/pages/index');
+        Flight::render('admin/pages/index');
         return;
     }
 }

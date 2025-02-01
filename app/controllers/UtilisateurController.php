@@ -92,7 +92,7 @@ class UtilisateurController
         // $listeHabitations = Flight::HabitationModel()->getAllHabitations();
         // Flight::render('client/pages/index', ['liste' => $listeHabitations]);
 
-            Flight::render('client/pages/index');
+        Flight::render('client/pages/index');
         return;
     }
 }

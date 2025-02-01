@@ -6,24 +6,22 @@ use Flight;
 
 class CategorieDepenseController
 {
-    public function __construct()
-    {
-    }
+    public function __construct() {}
 
-    public function updatePage() 
+    public function updatePage()
     {
         if (!isset($_GET['id'])) {
-            Flight::redirect('/categorieDepense'); 
+            Flight::redirect('/categorieDepense');
             return;
         }
-    
+
         $toUpdate = Flight::CategorieDepenseModel()->getCategorieDepenseById($_GET['id']);
-    
+
         if (!$toUpdate) {
             Flight::redirect('/categorieDepense');
             return;
         }
-    
+
         Flight::render('admin/pages/categories-form', ['categorie' => $toUpdate]);
     }
 

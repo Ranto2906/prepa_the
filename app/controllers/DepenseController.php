@@ -6,9 +6,7 @@ use Flight;
 
 class DepenseController
 {
-    public function __construct()
-    {
-    }
+    public function __construct() {}
 
     public function addPage()
     {

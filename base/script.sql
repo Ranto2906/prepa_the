@@ -123,3 +123,4 @@ INSERT INTO cueillette (date, cueilleur_id, parcelle_id, poids_kg) VALUES
 INSERT INTO vente (date, variete_id, poids_kg, prix_vente_kg) VALUES 
 ('2024-01-25', 1, 50.0, 5.00),
 ('2024-01-26', 2, 40.0, 4.50);
+
