@@ -7,6 +7,11 @@ use Tracy\Debugger;
 
 use app\models\UtilisateurModel;
 use app\models\AdminModel;
+use app\models\VarieteModel;
+use app\models\ParcelleModel;
+use app\models\CueilleurModel;
+use app\models\CategorieDepenseModel;
+use app\models\ConfigurationModel;
 
 
 /** 
@@ -38,4 +43,24 @@ Flight::map('UtilisateurModel', function () {
 
 Flight::map('AdminModel', function () {
     return new AdminModel(Flight::db());
+});
+
+Flight::map('VarieteModel', function () {
+    return new VarieteModel(Flight::db());
+});
+
+Flight::map('ParcelleModel', function () {
+    return new ParcelleModel(Flight::db());
+});
+
+Flight::map('CueilleurModel', function () {
+    return new CueilleurModel(Flight::db());
+});
+
+Flight::map('CategorieDepenseModel', function () {
+    return new CategorieDepenseModel(Flight::db());
+});
+
+Flight::map('ConfigurationModel', function () {
+    return new ConfigurationModel(Flight::db());
 });
