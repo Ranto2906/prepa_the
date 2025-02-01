@@ -11,7 +11,7 @@ class ResultatController
 
     public function showResultat()
     {
-        if(!isset($_POST['debut'], $_POST['fin'])) {
+        if (!isset($_POST['debut'], $_POST['fin'])) {
             Flight::render('client/pages/resultat', ['error' => 'Les dates de début et de fin sont requises.']);
             return;
         }

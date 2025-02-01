@@ -9,6 +9,7 @@ use app\controllers\CueilleurController;
 use app\controllers\DepenseController;
 use app\controllers\ParcelleController;
 use app\controllers\VarieteController;
+use app\controllers\ResultatController;
 use flight\Engine;
 use flight\net\Router;
 
@@ -90,3 +91,11 @@ $Depense_Controller = new DepenseController();
 $router->get('/depense', [$Depense_Controller, 'getAllDepenses']);
 $router->get('/depense/addForm', [$Depense_Controller, 'addPage']);
 $router->post('/depense/add', [$Depense_Controller, 'addDepense']);
+
+
+//Resultat
+$Resultat_Controller = new ResultatController();
+$router->get('/resultat', function () {
+    Flight::render('client/pages/resultat');
+});
+$router->post('/resultat', [$Resultat_Controller, 'showResultat']);

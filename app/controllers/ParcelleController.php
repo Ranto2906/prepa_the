@@ -6,9 +6,7 @@ use Flight;
 
 class ParcelleController
 {
-    public function __construct()
-    {
-    }
+    public function __construct() {}
 
     // Afficher les détails d'une parcelle
     public function showDetails()
