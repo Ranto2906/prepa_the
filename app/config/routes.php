@@ -32,7 +32,7 @@ $router->post('/admin', [$Admin_Controller, 'login']);
 $Variete_Controller = new VarieteController();
 $router->get('/varietes', [$Variete_Controller, 'getAllVarietes']);
 $router->get('/varietes/addForm', function () {
-    Flight::render('client/pages/varietes-form');
+    Flight::render('admin/pages/varietes-form');
 });
 $router->post('/varietes/add', [$Variete_Controller, 'addVariete']);
 $router->post('/varietes/delete', [$Variete_Controller, 'deleteVariete']);
@@ -43,7 +43,7 @@ $router->post('/varietes/update', [$Variete_Controller, 'updateVariete']);
 $Parcelle_Controller = new ParcelleController();
 $router->get('/parcelles', [$Parcelle_Controller, 'getAllParcelles']);
 $router->get('/parcelles/addForm', function () {
-    Flight::render('client/pages/parcelles-form');
+    Flight::render('admin/pages/parcelles-form');
 });
 $router->post('/parcelles/add', [$Parcelle_Controller, 'addParcelle']);
 $router->post('/parcelles/delete', [$Parcelle_Controller, 'deleteParcelle']);
@@ -53,7 +53,7 @@ $router->post('/parcelles/update', [$Parcelle_Controller, 'updateParcelle']);
 $Cueilleur_Controller = new CueilleurController();
 $router->get('/cueilleurs', [$Cueilleur_Controller, 'getAllCueilleurs']);
 $router->get('/cueilleurs/addForm', function () {
-    Flight::render('client/pages/cueilleurs-form');
+    Flight::render('admin/pages/cueilleurs-form');
 });
 $router->post('/cueilleurs/add', [$Cueilleur_Controller, 'addCueilleur']);
 $router->post('/cueilleurs/delete', [$Cueilleur_Controller, 'deleteCueilleur']);
@@ -64,7 +64,7 @@ $router->post('/cueilleurs/update', [$Cueilleur_Controller, 'updateCueilleur']);
 $Categorie_Depense_Controller = new CategorieDepenseController();
 $router->get('/categorieDepense', [$Categorie_Depense_Controller, 'getAllCategoriesDepense']);
 $router->get('/categorieDepense/addForm', function () {
-    Flight::render('client/pages/categories-form');
+    Flight::render('admin/pages/categories-form');
 });
 $router->post('/categorieDepense/add', [$Categorie_Depense_Controller, 'addCategoriesDepense']);
 $router->post('/categorieDepense/delete', [$Categorie_Depense_Controller, 'deleteCategoriesDepense']);
@@ -75,7 +75,7 @@ $router->post('/categorieDepense/update', [$Categorie_Depense_Controller, 'updat
 $Configuration_Controller = new ConfigurationController();
 $router->get('/configuration', [$Configuration_Controller, 'showConfiguration']);
 $router->get('/configuration/addForm', function () {
-    Flight::render('client/pages/configuration-form');
+    Flight::render('admin/pages/configuration-form');
 });
 $router->post('/configuration/add', [$Configuration_Controller, 'saveConfiguration']);
 

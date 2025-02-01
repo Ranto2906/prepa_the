@@ -14,7 +14,7 @@ class ParcelleController
     public function showDetails()
     {
         if (!isset($_GET['parcelle']) || empty($_GET['parcelle'])) {
-            Flight::render('client/pages/parcelle-details', ['error' => 'Le paramètre "parcelle" est requis.']);
+            Flight::render('admin/pages/parcelle-details', ['error' => 'Le paramètre "parcelle" est requis.']);
             return;
         }
 
@@ -22,9 +22,9 @@ class ParcelleController
         $parcelle = Flight::ParcelleModel()->getParcelleById($id);
 
         if (!$parcelle) {
-            Flight::render('client/pages/parcelle-details', ['error' => 'Parcelle non trouvée.']);
+            Flight::render('admin/pages/parcelle-details', ['error' => 'Parcelle non trouvée.']);
         } else {
-            Flight::render('client/pages/parcelle-details', ['parcelle' => $parcelle]);
+            Flight::render('admin/pages/parcelle-details', ['parcelle' => $parcelle]);
         }
     }
 
@@ -34,9 +34,9 @@ class ParcelleController
         $results = Flight::ParcelleModel()->getAllParcelles();
 
         if (empty($results)) {
-            Flight::render('client/pages/parcelles', ['error' => 'Aucune parcelle disponible.']);
+            Flight::render('admin/pages/parcelles', ['error' => 'Aucune parcelle disponible.']);
         } else {
-            Flight::render('client/pages/parcelles', ['parcelles' => $results]);
+            Flight::render('admin/pages/parcelles', ['parcelles' => $results]);
         }
     }
 
@@ -44,7 +44,7 @@ class ParcelleController
     public function addParcelle()
     {
         if (!isset($_POST['numero'], $_POST['surface_hectare'], $_POST['variete_id'])) {
-            Flight::render('client/pages/parcelles-form', ['error' => 'Tous les champs sont requis.']);
+            Flight::render('admin/pages/parcelles-form', ['error' => 'Tous les champs sont requis.']);
             return;
         }
 
@@ -55,9 +55,9 @@ class ParcelleController
         $result = Flight::ParcelleModel()->addParcelle($numero, $surface_hectare, $variete_id);
 
         if ($result) {
-            Flight::render('client/pages/parcelles-form', ['message' => 'Parcelle ajoutée avec succès.']);
+            Flight::render('admin/pages/parcelles-form', ['message' => 'Parcelle ajoutée avec succès.']);
         } else {
-            Flight::render('client/pages/parcelles-form', ['error' => 'Erreur lors de l\'ajout.']);
+            Flight::render('admin/pages/parcelles-form', ['error' => 'Erreur lors de l\'ajout.']);
         }
     }
 
@@ -65,7 +65,7 @@ class ParcelleController
     public function updateParcelle()
     {
         if (!isset($_POST['id'], $_POST['numero'], $_POST['surface_hectare'], $_POST['variete_id'])) {
-            Flight::render('client/pages/parcelles-form', ['error' => 'Tous les champs sont requis.']);
+            Flight::render('admin/pages/parcelles-form', ['error' => 'Tous les champs sont requis.']);
             return;
         }
 
@@ -76,16 +76,16 @@ class ParcelleController
 
         $parcelle = Flight::ParcelleModel()->getParcelleById($id);
         if (!$parcelle) {
-            Flight::render('client/pages/parcelles-form', ['error' => 'Parcelle non trouvée.']);
+            Flight::render('admin/pages/parcelles-form', ['error' => 'Parcelle non trouvée.']);
             return;
         }
 
         $result = Flight::ParcelleModel()->updateParcelle($id, $numero, $surface_hectare, $variete_id);
 
         if ($result) {
-            Flight::render('client/pages/parcelles-form', ['message' => 'Parcelle mise à jour avec succès.']);
+            Flight::render('admin/pages/parcelles-form', ['message' => 'Parcelle mise à jour avec succès.']);
         } else {
-            Flight::render('client/pages/parcelles-form', ['error' => 'Erreur lors de la mise à jour.']);
+            Flight::render('admin/pages/parcelles-form', ['error' => 'Erreur lors de la mise à jour.']);
         }
     }
 
@@ -93,23 +93,23 @@ class ParcelleController
     public function deleteParcelle()
     {
         if (!isset($_POST['id'])) {
-            Flight::render('client/pages/parcelles', ['error' => 'L\'ID de la parcelle est requis.']);
+            Flight::render('admin/pages/parcelles', ['error' => 'L\'ID de la parcelle est requis.']);
             return;
         }
 
         $id = $_POST['id'];
         $parcelle = Flight::ParcelleModel()->getParcelleById($id);
         if (!$parcelle) {
-            Flight::render('client/pages/parcelles', ['error' => 'Parcelle non trouvée.']);
+            Flight::render('admin/pages/parcelles', ['error' => 'Parcelle non trouvée.']);
             return;
         }
 
         $result = Flight::ParcelleModel()->deleteParcelle($id);
 
         if ($result) {
-            Flight::render('client/pages/parcelles', ['message' => 'Parcelle supprimée avec succès.']);
+            Flight::render('admin/pages/parcelles', ['message' => 'Parcelle supprimée avec succès.']);
         } else {
-            Flight::render('client/pages/parcelles', ['error' => 'Erreur lors de la suppression.']);
+            Flight::render('admin/pages/parcelles', ['error' => 'Erreur lors de la suppression.']);
         }
     }
 }

@@ -24,14 +24,14 @@ class CueilleurController
             return;
         }
     
-        Flight::render('client/pages/cueilleurs-form', ['cueilleur' => $toUpdate]);
+        Flight::render('admin/pages/cueilleurs-form', ['cueilleur' => $toUpdate]);
     }
 
     // Afficher les détails d'un cueilleur
     public function showDetails()
     {
         if (!isset($_GET['cueilleur']) || empty($_GET['cueilleur'])) {
-            Flight::render('client/pages/cueilleur-details', ['error' => 'Le paramètre "cueilleur" est requis.']);
+            Flight::render('admin/pages/cueilleur-details', ['error' => 'Le paramètre "cueilleur" est requis.']);
             return;
         }
 
@@ -39,9 +39,9 @@ class CueilleurController
         $cueilleur = Flight::CueilleurModel()->getCueilleurById($id);
 
         if (!$cueilleur) {
-            Flight::render('client/pages/cueilleur-details', ['error' => 'Cueilleur non trouvé.']);
+            Flight::render('admin/pages/cueilleur-details', ['error' => 'Cueilleur non trouvé.']);
         } else {
-            Flight::render('client/pages/cueilleur-details', ['cueilleur' => $cueilleur]);
+            Flight::render('admin/pages/cueilleur-details', ['cueilleur' => $cueilleur]);
         }
     }
 
@@ -51,9 +51,9 @@ class CueilleurController
         $results = Flight::CueilleurModel()->getAllCueilleurs();
 
         if (empty($results)) {
-            Flight::render('client/pages/cueilleurs', ['error' => 'Aucun cueilleur disponible.']);
+            Flight::render('admin/pages/cueilleurs', ['error' => 'Aucun cueilleur disponible.']);
         } else {
-            Flight::render('client/pages/cueilleurs', ['cueilleurs' => $results]);
+            Flight::render('admin/pages/cueilleurs', ['cueilleurs' => $results]);
         }
     }
 
@@ -61,7 +61,7 @@ class CueilleurController
     public function addCueilleur()
     {
         if (!isset($_POST['nom'], $_POST['genre'], $_POST['date_naissance'])) {
-            Flight::render('client/pages/cueilleurs-form', ['error' => 'Tous les champs sont requis.']);
+            Flight::render('admin/pages/cueilleurs-form', ['error' => 'Tous les champs sont requis.']);
             return;
         }
 
@@ -72,9 +72,9 @@ class CueilleurController
         $result = Flight::CueilleurModel()->addCueilleur($nom, $genre, $date_naissance);
 
         if ($result) {
-            Flight::render('client/pages/cueilleurs-form', ['message' => 'Cueilleur ajouté avec succès.']);
+            Flight::render('admin/pages/cueilleurs-form', ['message' => 'Cueilleur ajouté avec succès.']);
         } else {
-            Flight::render('client/pages/cueilleurs-form', ['error' => 'Erreur lors de l\'ajout.']);
+            Flight::render('admin/pages/cueilleurs-form', ['error' => 'Erreur lors de l\'ajout.']);
         }
     }
 
@@ -82,7 +82,7 @@ class CueilleurController
     public function updateCueilleur()
     {
         if (!isset($_POST['id'], $_POST['nom'], $_POST['genre'], $_POST['date_naissance'])) {
-            Flight::render('client/pages/cueilleurs-form', ['error' => 'Tous les champs sont requis.']);
+            Flight::render('admin/pages/cueilleurs-form', ['error' => 'Tous les champs sont requis.']);
             return;
         }
 
@@ -93,16 +93,16 @@ class CueilleurController
 
         $cueilleur = Flight::CueilleurModel()->getCueilleurById($id);
         if (!$cueilleur) {
-            Flight::render('client/pages/cueilleurs-form', ['error' => 'Cueilleur non trouvé.']);
+            Flight::render('admin/pages/cueilleurs-form', ['error' => 'Cueilleur non trouvé.']);
             return;
         }
 
         $result = Flight::CueilleurModel()->updateCueilleur($id, $nom, $genre, $date_naissance);
 
         if ($result) {
-            Flight::render('client/pages/cueilleurs-form', ['message' => 'Cueilleur mis à jour avec succès.']);
+            Flight::render('admin/pages/cueilleurs-form', ['message' => 'Cueilleur mis à jour avec succès.']);
         } else {
-            Flight::render('client/pages/cueilleurs-form', ['error' => 'Erreur lors de la mise à jour.']);
+            Flight::render('admin/pages/cueilleurs-form', ['error' => 'Erreur lors de la mise à jour.']);
         }
     }
 
@@ -110,23 +110,23 @@ class CueilleurController
     public function deleteCueilleur()
     {
         if (!isset($_POST['id'])) {
-            Flight::render('client/pages/cueilleurs', ['error' => 'L\'ID du cueilleur est requis.']);
+            Flight::render('admin/pages/cueilleurs', ['error' => 'L\'ID du cueilleur est requis.']);
             return;
         }
 
         $id = $_POST['id'];
         $cueilleur = Flight::CueilleurModel()->getCueilleurById($id);
         if (!$cueilleur) {
-            Flight::render('client/pages/cueilleurs', ['error' => 'Cueilleur non trouvé.']);
+            Flight::render('admin/pages/cueilleurs', ['error' => 'Cueilleur non trouvé.']);
             return;
         }
 
         $result = Flight::CueilleurModel()->deleteCueilleur($id);
 
         if ($result) {
-            Flight::render('client/pages/cueilleurs', ['message' => 'Cueilleur supprimé avec succès.']);
+            Flight::render('admin/pages/cueilleurs', ['message' => 'Cueilleur supprimé avec succès.']);
         } else {
-            Flight::render('client/pages/cueilleurs', ['error' => 'Erreur lors de la suppression.']);
+            Flight::render('admin/pages/cueilleurs', ['error' => 'Erreur lors de la suppression.']);
         }
     }
 }
