@@ -15,4 +15,4 @@
     <?= $error ?>
 </form>
 
-<?php include  __DIR__  . '/../elements/footer.php' ?>
+<?php include  __DIR__  . '/../elements/footer.php' ?>  
