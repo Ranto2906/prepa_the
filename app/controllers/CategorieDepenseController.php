@@ -24,7 +24,7 @@ class CategorieDepenseController
             return;
         }
     
-        Flight::render('client/pages/categories-form', ['categorie' => $toUpdate]);
+        Flight::render('admin/pages/categories-form', ['categorie' => $toUpdate]);
     }
 
 
@@ -32,7 +32,7 @@ class CategorieDepenseController
     public function showDetails()
     {
         if (!isset($_GET['categorie']) || empty($_GET['categorie'])) {
-            Flight::render('client/pages/categorie-details', ['error' => 'Le paramètre "categorie" est requis.']);
+            Flight::render('admin/pages/categorie-details', ['error' => 'Le paramètre "categorie" est requis.']);
             return;
         }
 
@@ -40,9 +40,9 @@ class CategorieDepenseController
         $categorie = Flight::CategorieDepenseModel()->getCategorieDepenseById($id);
 
         if (!$categorie) {
-            Flight::render('client/pages/categorie-details', ['error' => 'Catégorie non trouvée.']);
+            Flight::render('admin/pages/categorie-details', ['error' => 'Catégorie non trouvée.']);
         } else {
-            Flight::render('client/pages/categorie-details', ['categorie' => $categorie]);
+            Flight::render('admin/pages/categorie-details', ['categorie' => $categorie]);
         }
     }
 
@@ -52,9 +52,9 @@ class CategorieDepenseController
         $results = Flight::CategorieDepenseModel()->getAllCategoriesDepense();
 
         if (empty($results)) {
-            Flight::render('client/pages/categories', ['error' => 'Aucune catégorie disponible.']);
+            Flight::render('admin/pages/categories', ['error' => 'Aucune catégorie disponible.']);
         } else {
-            Flight::render('client/pages/categories', ['categories' => $results]);
+            Flight::render('admin/pages/categories', ['categories' => $results]);
         }
     }
 
@@ -62,7 +62,7 @@ class CategorieDepenseController
     public function addCategorieDepense()
     {
         if (!isset($_POST['nom'])) {
-            Flight::render('client/pages/categories-form', ['error' => 'Le champ "nom" est requis.']);
+            Flight::render('admin/pages/categories-form', ['error' => 'Le champ "nom" est requis.']);
             return;
         }
 
@@ -71,9 +71,9 @@ class CategorieDepenseController
         $result = Flight::CategorieDepenseModel()->addCategorieDepense($nom);
 
         if ($result) {
-            Flight::render('client/pages/categories-form', ['message' => 'Catégorie ajoutée avec succès.']);
+            Flight::render('admin/pages/categories-form', ['message' => 'Catégorie ajoutée avec succès.']);
         } else {
-            Flight::render('client/pages/categories-form', ['error' => 'Erreur lors de l\'ajout.']);
+            Flight::render('admin/pages/categories-form', ['error' => 'Erreur lors de l\'ajout.']);
         }
     }
 
@@ -81,7 +81,7 @@ class CategorieDepenseController
     public function updateCategorieDepense()
     {
         if (!isset($_POST['id'], $_POST['nom'])) {
-            Flight::render('client/pages/categories-form', ['error' => 'Tous les champs sont requis.']);
+            Flight::render('admin/pages/categories-form', ['error' => 'Tous les champs sont requis.']);
             return;
         }
 
@@ -90,16 +90,16 @@ class CategorieDepenseController
 
         $categorie = Flight::CategorieDepenseModel()->getCategorieDepenseById($id);
         if (!$categorie) {
-            Flight::render('client/pages/categories-form', ['error' => 'Catégorie non trouvée.']);
+            Flight::render('admin/pages/categories-form', ['error' => 'Catégorie non trouvée.']);
             return;
         }
 
         $result = Flight::CategorieDepenseModel()->updateCategorieDepense($id, $nom);
 
         if ($result) {
-            Flight::render('client/pages/categories-form', ['message' => 'Catégorie mise à jour avec succès.']);
+            Flight::render('admin/pages/categories-form', ['message' => 'Catégorie mise à jour avec succès.']);
         } else {
-            Flight::render('client/pages/categories-form', ['error' => 'Erreur lors de la mise à jour.']);
+            Flight::render('admin/pages/categories-form', ['error' => 'Erreur lors de la mise à jour.']);
         }
     }
 
@@ -107,23 +107,23 @@ class CategorieDepenseController
     public function deleteCategorieDepense()
     {
         if (!isset($_POST['id'])) {
-            Flight::render('client/pages/categories', ['error' => 'L\'ID de la catégorie est requis.']);
+            Flight::render('admin/pages/categories', ['error' => 'L\'ID de la catégorie est requis.']);
             return;
         }
 
         $id = $_POST['id'];
         $categorie = Flight::CategorieDepenseModel()->getCategorieDepenseById($id);
         if (!$categorie) {
-            Flight::render('client/pages/categories', ['error' => 'Catégorie non trouvée.']);
+            Flight::render('admin/pages/categories', ['error' => 'Catégorie non trouvée.']);
             return;
         }
 
         $result = Flight::CategorieDepenseModel()->deleteCategorieDepense($id);
 
         if ($result) {
-            Flight::render('client/pages/categories', ['message' => 'Catégorie supprimée avec succès.']);
+            Flight::render('admin/pages/categories', ['message' => 'Catégorie supprimée avec succès.']);
         } else {
-            Flight::render('client/pages/categories', ['error' => 'Erreur lors de la suppression.']);
+            Flight::render('admin/pages/categories', ['error' => 'Erreur lors de la suppression.']);
         }
     }
 }

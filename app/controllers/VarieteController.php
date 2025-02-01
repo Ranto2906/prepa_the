@@ -24,7 +24,7 @@ class VarieteController
             return;
         }
     
-        Flight::render('client/pages/varietes-form', ['variete' => $toUpdate]);
+        Flight::render('admin/pages/varietes-form', ['variete' => $toUpdate]);
     }
     
 
@@ -32,7 +32,7 @@ class VarieteController
     public function showDetails()
     {
         if (!isset($_GET['variete']) || empty($_GET['variete'])) {
-            Flight::render('client/pages/variete-details', ['error' => 'Le paramètre "variete" est requis.']);
+            Flight::render('admin/pages/variete-details', ['error' => 'Le paramètre "variete" est requis.']);
             return;
         }
 
@@ -40,9 +40,9 @@ class VarieteController
         $variete = Flight::VarieteModel()->getVarieteById($id);
 
         if (!$variete) {
-            Flight::render('client/pages/variete-details', ['error' => 'Variété non trouvée.']);
+            Flight::render('admin/pages/variete-details', ['error' => 'Variété non trouvée.']);
         } else {
-            Flight::render('client/pages/variete-details', ['variete' => $variete]);
+            Flight::render('admin/pages/variete-details', ['variete' => $variete]);
         }
     }
 
@@ -50,7 +50,7 @@ class VarieteController
     public function searchVarietes()
     {
         if (!isset($_GET['nom']) || empty($_GET['nom'])) {
-            Flight::render('client/pages/varietes', ['error' => 'Le paramètre "nom" est requis.']);
+            Flight::render('admin/pages/varietes', ['error' => 'Le paramètre "nom" est requis.']);
             return;
         }
 
@@ -58,9 +58,9 @@ class VarieteController
         $results = Flight::VarieteModel()->searchVarieteByName($keyword);
 
         if (empty($results)) {
-            Flight::render('client/pages/varietes', ['error' => 'Aucune variété trouvée pour ce nom.']);
+            Flight::render('admin/pages/varietes', ['error' => 'Aucune variété trouvée pour ce nom.']);
         } else {
-            Flight::render('client/pages/varietes', ['varietes' => $results]);
+            Flight::render('admin/pages/varietes', ['varietes' => $results]);
         }
     }
 
@@ -70,9 +70,9 @@ class VarieteController
         $results = Flight::VarieteModel()->getAllVarietes();
 
         if (empty($results)) {
-            Flight::render('client/pages/varietes', ['error' => 'Aucune variété disponible.']);
+            Flight::render('admin/pages/varietes', ['error' => 'Aucune variété disponible.']);
         } else {
-            Flight::render('client/pages/varietes', ['varietes' => $results]);
+            Flight::render('admin/pages/varietes', ['varietes' => $results]);
         }
     }
 
@@ -80,7 +80,7 @@ class VarieteController
     public function addVariete()
     {
         if (!isset($_POST['nom'], $_POST['occupation_m2'], $_POST['rendement_pied_kg'])) {
-            Flight::render('client/pages/varietes-form', ['error' => 'Tous les champs sont requis.']);
+            Flight::render('admin/pages/varietes-form', ['error' => 'Tous les champs sont requis.']);
             return;
         }
 
@@ -91,9 +91,9 @@ class VarieteController
         $result = Flight::VarieteModel()->addVariete($nom, $occupation_m2, $rendement_pied_kg);
 
         if ($result) {
-            Flight::render('client/pages/varietes-form', ['message' => 'Variété ajoutée avec succès.']);
+            Flight::render('admin/pages/varietes-form', ['message' => 'Variété ajoutée avec succès.']);
         } else {
-            Flight::render('client/pages/varietes-form', ['error' => 'Erreur lors de l\'ajout.']);
+            Flight::render('admin/pages/varietes-form', ['error' => 'Erreur lors de l\'ajout.']);
         }
     }
 
@@ -101,7 +101,7 @@ class VarieteController
     public function updateVariete()
     {
         if (!isset($_POST['id'], $_POST['nom'], $_POST['occupation_m2'], $_POST['rendement_pied_kg'])) {
-            Flight::render('client/pages/varietes-form', ['error' => 'Tous les champs sont requis.']);
+            Flight::render('admin/pages/varietes-form', ['error' => 'Tous les champs sont requis.']);
             return;
         }
 
@@ -112,16 +112,16 @@ class VarieteController
 
         $variete = Flight::VarieteModel()->getVarieteById($id);
         if (!$variete) {
-            Flight::render('client/pages/varietes-form', ['error' => 'Variété non trouvée.']);
+            Flight::render('admin/pages/varietes-form', ['error' => 'Variété non trouvée.']);
             return;
         }
 
         $result = Flight::VarieteModel()->updateVariete($id, $nom, $occupation_m2, $rendement_pied_kg);
 
         if ($result) {
-            Flight::render('client/pages/varietes-form', ['message' => 'Variété mise à jour avec succès.']);
+            Flight::render('admin/pages/varietes-form', ['message' => 'Variété mise à jour avec succès.']);
         } else {
-            Flight::render('client/pages/varietes-form', ['error' => 'Erreur lors de la mise à jour.']);
+            Flight::render('admin/pages/varietes-form', ['error' => 'Erreur lors de la mise à jour.']);
         }
     }
 
@@ -129,23 +129,23 @@ class VarieteController
     public function deleteVariete()
     {
         if (!isset($_POST['id'])) {
-            Flight::render('client/pages/varietes', ['error' => 'L\'ID de la variété est requis.']);
+            Flight::render('admin/pages/varietes', ['error' => 'L\'ID de la variété est requis.']);
             return;
         }
 
         $id = $_POST['id'];
         $variete = Flight::VarieteModel()->getVarieteById($id);
         if (!$variete) {
-            Flight::render('client/pages/varietes', ['error' => 'Variété non trouvée.']);
+            Flight::render('admin/pages/varietes', ['error' => 'Variété non trouvée.']);
             return;
         }
 
         $result = Flight::VarieteModel()->deleteVariete($id);
 
         if ($result) {
-            Flight::render('client/pages/varietes', ['message' => 'Variété supprimée avec succès.']);
+            Flight::render('admin/pages/varietes', ['message' => 'Variété supprimée avec succès.']);
         } else {
-            Flight::render('client/pages/varietes', ['error' => 'Erreur lors de la suppression.']);
+            Flight::render('admin/pages/varietes', ['error' => 'Erreur lors de la suppression.']);
         }
     }
 }
