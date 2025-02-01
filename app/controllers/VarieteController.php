@@ -10,6 +10,24 @@ class VarieteController
     {
     }
 
+    public function updatePage()
+    {
+        if (!isset($_GET['id'])) {
+            Flight::redirect('/varietes'); 
+            return;
+        }
+    
+        $toUpdate = Flight::VarieteModel()->getVarieteById($_GET['id']);
+    
+        if (!$toUpdate) {
+            Flight::redirect('/varietes');
+            return;
+        }
+    
+        Flight::render('client/pages/varietes-form', ['variete' => $toUpdate]);
+    }
+    
+
     // Afficher les détails d'une variété de thé
     public function showDetails()
     {

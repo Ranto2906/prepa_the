@@ -10,6 +10,23 @@ class CueilleurController
     {
     }
 
+    public function updatePage() 
+    {
+        if (!isset($_GET['id'])) {
+            Flight::redirect('/cueilleurs'); 
+            return;
+        }
+    
+        $toUpdate = Flight::CueilleurModel()->getCueilleurById($_GET['id']);
+    
+        if (!$toUpdate) {
+            Flight::redirect('/cueilleurs');
+            return;
+        }
+    
+        Flight::render('client/pages/cueilleurs-form', ['cueilleur' => $toUpdate]);
+    }
+
     // Afficher les détails d'un cueilleur
     public function showDetails()
     {

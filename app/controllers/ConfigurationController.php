@@ -6,9 +6,7 @@ use Flight;
 
 class ConfigurationController
 {
-    public function __construct()
-    {
-    }
+    public function __construct() {}
 
     // Afficher la configuration
     public function showConfiguration()
@@ -27,7 +25,8 @@ class ConfigurationController
     {
         // , $_POST['poids_min_journalier'], $_POST['bonus_percent'], $_POST['malus_percent']
         if (!isset($_POST['salaire_kg'])) {
-            Flight::render('admin/pages/configuration', ['error' => 'Tous les champs sont requis.']);
+            Flight::redirect('/configuration?error=' . urlencode('Tous les champs sont requis'));
+            // Flight::render('admin/pages/configuration', ['error' => 'Tous les champs sont requis.']);
             return;
         }
 
@@ -48,9 +47,11 @@ class ConfigurationController
         }
 
         if ($result) {
-            Flight::render('admin/pages/configuration', ['message' => $message]);
+            Flight::redirect('/configuration?error=' . urlencode($message));
+            // Flight::render('admin/pages/configuration', ['config' => $config, 'message' => $message]);
         } else {
-            Flight::render('admin/pages/configuration', ['error' => 'Erreur lors de l\'enregistrement.']);
+            Flight::redirect('/configuration?error=' . urlencode("Erreur lors de l'enregistrement"));
+            // Flight::render('admin/pages/configuration', ['error' => 'Erreur lors de l\'enregistrement.']);
         }
     }
 }
