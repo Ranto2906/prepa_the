@@ -10,6 +10,24 @@ class CategorieDepenseController
     {
     }
 
+    public function updatePage() 
+    {
+        if (!isset($_GET['id'])) {
+            Flight::redirect('/categorieDepense'); 
+            return;
+        }
+    
+        $toUpdate = Flight::CategorieDepenseModel()->getCategorieDepenseById($_GET['id']);
+    
+        if (!$toUpdate) {
+            Flight::redirect('/categorieDepense');
+            return;
+        }
+    
+        Flight::render('client/pages/categories-form', ['categorie' => $toUpdate]);
+    }
+
+
     // Afficher les détails d'une catégorie de dépense
     public function showDetails()
     {

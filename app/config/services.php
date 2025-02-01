@@ -12,6 +12,8 @@ use app\models\ParcelleModel;
 use app\models\CueilleurModel;
 use app\models\CategorieDepenseModel;
 use app\models\ConfigurationModel;
+use app\models\CueilletteModel;
+use app\models\DepenseModel;
 
 
 /** 
@@ -63,4 +65,12 @@ Flight::map('CategorieDepenseModel', function () {
 
 Flight::map('ConfigurationModel', function () {
     return new ConfigurationModel(Flight::db());
+});
+
+Flight::map('CueilletteModel', function () {
+    return new CueilletteModel(Flight::db());
+});
+
+Flight::map('DepenseModel', function () {
+    return new DepenseModel(Flight::db());
 });
