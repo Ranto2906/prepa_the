@@ -90,6 +90,20 @@ CREATE TABLE vente (
     FOREIGN KEY (variete_id) REFERENCES variete_the(id) ON DELETE CASCADE
 );
 
+-- Vue pour les résultats globaux
+CREATE VIEW v_resultats AS
+SELECT
+    SUM(c.poids_kg) AS poids_total_cueillette,
+    SUM(p.surface_hectare * v.rendement_pied_kg - c.poids_kg) AS poids_restant,
+    SUM(d.montant) / SUM(c.poids_kg) AS cout_reviens_kg
+FROM
+    parcelle p
+    JOIN variete_the v ON p.variete_id = v.id
+    LEFT JOIN cueillette c ON p.id = c.parcelle_id
+    LEFT JOIN depense d ON d.date BETWEEN '2023-01-01' AND '2023-12-31'  -- Remplacer par les dates de début et de fin souhaitées
+WHERE
+    c.date BETWEEN '2023-01-01' AND '2023-12-31'  -- Remplacer par les dates de début et de fin souhaitées;
+
 -- Insertion de données de test
 INSERT INTO variete_the (nom, occupation_m2, rendement_pied_kg) VALUES 
 ('Thé Vert', 1.8, 3.0),
@@ -123,3 +137,4 @@ INSERT INTO cueillette (date, cueilleur_id, parcelle_id, poids_kg) VALUES
 INSERT INTO vente (date, variete_id, poids_kg, prix_vente_kg) VALUES 
 ('2024-01-25', 1, 50.0, 5.00),
 ('2024-01-26', 2, 40.0, 4.50);
+

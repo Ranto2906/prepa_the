@@ -14,6 +14,7 @@ use app\models\CategorieDepenseModel;
 use app\models\ConfigurationModel;
 use app\models\CueilletteModel;
 use app\models\DepenseModel;
+use app\models\ResultatModel;
 
 
 /** 
@@ -73,4 +74,8 @@ Flight::map('CueilletteModel', function () {
 
 Flight::map('DepenseModel', function () {
     return new DepenseModel(Flight::db());
+});
+
+Flight::map('ResultatModel', function () {
+    return new ResultatModel(Flight::db());
 });
