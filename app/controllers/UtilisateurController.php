@@ -11,12 +11,12 @@ class UtilisateurController
 
     public function mainPage()
     {
-        Flight::render('client/pages/login');
+        Flight::render('client/pages/login_user');
     }
 
     public function loginAdmin()
     {
-        Flight::render('admin/pages/logIn');
+        Flight::render('admin/pages/login_user');
     }
 
     public function home()
