@@ -1,3 +1,4 @@
 .vscode/
 .vagrant/
 runway
+app/config/config.php
