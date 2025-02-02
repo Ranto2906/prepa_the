@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Connexion Admin</title>
-    <link rel="stylesheet" href="/assets/css/admin/Admin_Login.css">
+    <title>Connexion Utilisateur</title>
+    <link rel="stylesheet" href="/assets/css/user/Utilisateur_style.css">
     <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
 </head>
 <body>
@@ -22,14 +22,14 @@
     <!-- Hero Section -->
     <section class="hero">
         <div class="hero-content">
-            <h1>Connexion Admin</h1>
-            <p>Accédez à votre espace administrateur</p>
+            <h1>Connexion Utilisateur</h1>
+            <p>Accédez à votre espace utilisateur</p>
 
             <!-- Formulaire de connexion -->
-            <form action="login.php" method="POST">
+            <form action="login_user.php" method="POST">
                 <div class="form-group">
                     <label for="username">Nom d'utilisateur</label>
-                    <input type="text" class="form-control" id="username" name="username" value="admin" readonly required>
+                    <input type="text" class="form-control" id="username" name="username" required>
                 </div>
                 <div class="form-group">
                     <label for="password">Mot de passe</label>

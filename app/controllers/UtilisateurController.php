@@ -11,7 +11,7 @@ class UtilisateurController
 
     public function mainPage()
     {
-        Flight::render('client/pages/logIn');
+        Flight::render('client/pages/login');
     }
 
     public function loginAdmin()
